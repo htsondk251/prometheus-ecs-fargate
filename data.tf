@@ -2,7 +2,7 @@ data "aws_ssm_parameter" "ecs_instance_ami" {
   name = "/aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id"
 }
 
-data "aws_iam_policy_document" "assume_ec2" {
+data "aws_iam_policy_document" "assume_ecs" {
   statement {
     sid     = ""
     actions = ["sts:AssumeRole"]
@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "assume_ec2" {
 
     principals {
       type        = "Service"
-      identifiers = ["ec2.amazonaws.com"]
+      identifiers = ["ecs-tasks.amazonaws.com"]
     }
   }
 }
